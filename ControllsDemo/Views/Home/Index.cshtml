@@ -1,0 +1,70 @@
+﻿@model MyViewModel
+
+@{
+    if (Model.SelectedDepartmentId != 0)
+    {
+        <h5 class="text-success shadow-lg p-3  ">Geselcteerde Department ID: @Model.SelectedDepartmentId</h5>
+        <h5 class="text-success shadow-lg p-3 mb-5 ">Geselcteerde Department Text: @Model.SelectedDepartmentText</h5>
+        if (ViewBag.IsCatActive = null)
+        {
+            //<div>Checkbox is selected </div>
+            <h5>Check Box @Model.Cat.IsActive</h5>
+
+        }
+
+        if (ViewBag.IsCatActive != null)
+        {
+           // <div>Checkbox is Not selected </div>
+           <div>@ViewBag.IsCatActive</div>
+        }
+
+    }
+   
+    
+}
+
+
+@{
+    if (Model.SelectedCatId != 0)
+    {
+        <h5 class="text-warning shadow-lg p-3  ">Geselcteerde Cat ID: @Model.SelectedCatId</h5>
+        <h5 class="text-warning shadow-lg p-3 mb-5 ">Geselcteerde Cat Text: @Model.SelectedCatText</h5>
+    }
+
+}
+
+<form asp-action="SubmitForm">
+
+    <div class="form-group">
+        <select class="text-success shadow-lg p-3 mb-5 " asp-for="@Model.SelectedDepartmentId" class="form-control" asp-items="@Model.DepartmentItems">
+            <option value="">Select an option</option>
+        </select>
+        <span asp-validation-for="@Model.SelectedDepartmentId" class="text-danger"></span>
+    </div>
+    <div>
+        <input asp-for="Cat.IsActive" type="checkbox" />
+        <label asp-for="Cat.IsActive"></label>
+    </div>
+
+    <div  class="form-group">
+        <select action="SubmitFormCat" class="text-warning shadow-lg p-3 mb-5 " asp-for="@Model.SelectedCatId" class="form-control" asp-items="@Model.CatItems">
+            <option value="">Select an option</option>
+        </select>
+        <span asp-validation-for="@Model.SelectedCatId" class="text-danger"></span>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+@* <form asp-action="SubmitForm">
+    <select class="text-success shadow-lg p-3 mb-5 " asp-for="SelectedDepartmentId" asp-items="Model.DepartmentItems">
+        <option value="">Selecteer een department</option>
+    </select>
+  
+    
+    <select class="text-warning shadow-lg p-3 mb-5 " asp-for="SelectedCatId"  asp-items="Model.CatItems ">
+        
+        <option value=" @ViewBag.CatItems ">Selecteer een Cat</option>
+    </select>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form> *@
+
